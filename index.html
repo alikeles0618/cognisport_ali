@@ -1,0 +1,935 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CogniSport Pro | Spor Bilimleri Bilişsel & Algısal Performans Laboratuvarı</title>
+    <meta name="description" content="Selçuk Üniversitesi - Dr. Ali KELEŞ tarafından geliştirilen, sporcular için milisaniye hassasiyetli klinik bilişsel performans ve algı test bataryası.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #1E3A8A;
+            --primary-light: #3B82F6;
+            --secondary: #0D9488;
+            --accent: #E11D48;
+            --dark: #0F172A;
+            --dark-card: #1E293B;
+            --text-main: #334155;
+            --text-muted: #64748B;
+            --bg-light: #F8FAFC;
+            --card-border: rgba(226, 232, 240, 0.8);
+            --gradient-hero: linear-gradient(135deg, #0F172A 0%, #1E293B 50%, #1E3A8A 100%);
+            --radius-lg: 20px;
+            --radius-md: 12px;
+            --shadow-sm: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+            --shadow-md: 0 10px 25px -5px rgba(15, 23, 42, 0.08);
+            --shadow-glow: 0 20px 40px -10px rgba(59, 130, 246, 0.25);
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        body {
+            background-color: var(--bg-light);
+            color: var(--text-main);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* --- HEADER / NAVIGATION --- */
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            background: rgba(15, 23, 42, 0.85);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            z-index: 1000;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        .nav-container {
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 16px 24px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .logo-group {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            text-decoration: none;
+        }
+
+        .logo-icon {
+            width: 44px;
+            height: 44px;
+            background: linear-gradient(135deg, #3B82F6, #0D9488);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 22px;
+            box-shadow: 0 4px 12px rgba(59, 130, 246, 0.4);
+        }
+
+        .logo-text h1 {
+            color: #FFFFFF;
+            font-size: 20px;
+            font-weight: 800;
+            letter-spacing: -0.5px;
+            line-height: 1.1;
+        }
+
+        .logo-text span {
+            color: #94A3B8;
+            font-size: 11px;
+            font-weight: 600;
+            display: block;
+            margin-top: 2px;
+        }
+
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 32px;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: #CBD5E1;
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: 600;
+            transition: color 0.2s;
+        }
+
+        .nav-links a:hover {
+            color: #38BDF8;
+        }
+
+        .btn-nav-download {
+            background: linear-gradient(135deg, #2563EB, #1D4ED8);
+            color: white !important;
+            padding: 10px 22px;
+            border-radius: 10px;
+            font-weight: 700;
+            box-shadow: 0 4px 14px rgba(37, 99, 235, 0.35);
+            transition: all 0.2s;
+        }
+
+        .btn-nav-download:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(37, 99, 235, 0.5);
+            color: white;
+        }
+
+        /* --- HERO SECTION --- */
+        .hero {
+            background: var(--gradient-hero);
+            padding: 160px 24px 100px;
+            color: white;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: -20%;
+            right: -10%;
+            width: 600px;
+            height: 600px;
+            background: radial-gradient(circle, rgba(59, 130, 246, 0.25) 0%, transparent 70%);
+            border-radius: 50%;
+            pointer-events: none;
+        }
+
+        .hero::after {
+            content: '';
+            position: absolute;
+            bottom: -15%;
+            left: -5%;
+            width: 500px;
+            height: 500px;
+            background: radial-gradient(circle, rgba(13, 148, 136, 0.2) 0%, transparent 70%);
+            border-radius: 50%;
+            pointer-events: none;
+        }
+
+        .hero-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            text-align: center;
+            position: relative;
+            z-index: 2;
+        }
+
+        .badge-academic {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            padding: 8px 18px;
+            border-radius: 100px;
+            font-size: 13px;
+            font-weight: 600;
+            color: #93C5FD;
+            margin-bottom: 24px;
+            backdrop-filter: blur(8px);
+        }
+
+        .hero h2 {
+            font-size: 52px;
+            font-weight: 900;
+            letter-spacing: -1.5px;
+            line-height: 1.15;
+            margin-bottom: 24px;
+            max-width: 950px;
+            margin-left: auto;
+            margin-right: auto;
+            background: linear-gradient(180deg, #FFFFFF 0%, #E2E8F0 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .hero p {
+            font-size: 19px;
+            color: #CBD5E1;
+            max-width: 780px;
+            margin: 0 auto 40px;
+            font-weight: 400;
+            line-height: 1.7;
+        }
+
+        .hero-actions {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 18px;
+            flex-wrap: wrap;
+            margin-bottom: 50px;
+        }
+
+        .btn-primary-hero {
+            background: linear-gradient(135deg, #3B82F6 0%, #1D4ED8 100%);
+            color: white;
+            text-decoration: none;
+            padding: 16px 36px;
+            border-radius: 14px;
+            font-size: 16px;
+            font-weight: 800;
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+            box-shadow: 0 10px 30px rgba(37, 99, 235, 0.4);
+            transition: all 0.25s ease;
+        }
+
+        .btn-primary-hero:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 35px rgba(37, 99, 235, 0.6);
+        }
+
+        .btn-secondary-hero {
+            background: rgba(255, 255, 255, 0.08);
+            color: #FFFFFF;
+            text-decoration: none;
+            padding: 16px 30px;
+            border-radius: 14px;
+            font-size: 15px;
+            font-weight: 700;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            transition: all 0.2s;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .btn-secondary-hero:hover {
+            background: rgba(255, 255, 255, 0.16);
+            border-color: rgba(255, 255, 255, 0.35);
+        }
+
+        .hero-specs {
+            display: flex;
+            justify-content: center;
+            gap: 48px;
+            padding-top: 30px;
+            border-top: 1px solid rgba(255, 255, 255, 0.12);
+            max-width: 850px;
+            margin: 0 auto;
+            flex-wrap: wrap;
+        }
+
+        .spec-item {
+            text-align: center;
+        }
+
+        .spec-num {
+            font-size: 26px;
+            font-weight: 800;
+            color: #38BDF8;
+            display: block;
+        }
+
+        .spec-label {
+            font-size: 12px;
+            color: #94A3B8;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            font-weight: 600;
+        }
+
+        /* --- TEST BATTERY SECTION --- */
+        .section {
+            padding: 100px 24px;
+            max-width: 1240px;
+            margin: 0 auto;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+
+        .section-badge {
+            display: inline-block;
+            background: #EFF6FF;
+            color: #2563EB;
+            padding: 6px 16px;
+            border-radius: 100px;
+            font-size: 12px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.8px;
+            margin-bottom: 12px;
+        }
+
+        .section-title {
+            font-size: 38px;
+            font-weight: 800;
+            color: var(--dark);
+            letter-spacing: -1px;
+            margin-bottom: 16px;
+        }
+
+        .section-desc {
+            font-size: 17px;
+            color: var(--text-muted);
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        .tests-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(360px, 1fr));
+            gap: 28px;
+        }
+
+        .test-card {
+            background: #FFFFFF;
+            border-radius: var(--radius-lg);
+            border: 1px solid var(--card-border);
+            padding: 32px;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            box-shadow: var(--shadow-sm);
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .test-card:hover {
+            transform: translateY(-6px);
+            box-shadow: var(--shadow-md);
+            border-color: #CBD5E1;
+        }
+
+        .card-top {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 20px;
+        }
+
+        .test-icon-box {
+            width: 54px;
+            height: 54px;
+            border-radius: 14px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 26px;
+        }
+
+        .test-tag {
+            font-size: 11px;
+            font-weight: 700;
+            padding: 4px 12px;
+            border-radius: 100px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .test-card h3 {
+            font-size: 21px;
+            font-weight: 800;
+            color: var(--dark);
+            margin-bottom: 12px;
+            letter-spacing: -0.3px;
+        }
+
+        .test-card p {
+            font-size: 14px;
+            color: var(--text-muted);
+            line-height: 1.65;
+            margin-bottom: 20px;
+        }
+
+        .test-metrics {
+            background: #F8FAFC;
+            border-radius: var(--radius-md);
+            padding: 14px 16px;
+            border: 1px solid #E2E8F0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .metric-title {
+            font-size: 11px;
+            font-weight: 700;
+            color: #64748B;
+            text-transform: uppercase;
+        }
+
+        .metric-val {
+            font-size: 13px;
+            font-weight: 800;
+            color: var(--dark);
+        }
+
+        /* --- FEATURE HIGHLIGHTS (ZERO LATENCY, A4 PDF, SESSIONS) --- */
+        .features-banner {
+            background: linear-gradient(135deg, #0F172A 0%, #1E293B 100%);
+            border-radius: 28px;
+            padding: 60px 48px;
+            color: white;
+            margin-top: 40px;
+            box-shadow: var(--shadow-glow);
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 36px;
+            margin-top: 40px;
+        }
+
+        .feature-box {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 18px;
+            padding: 28px;
+        }
+
+        .feature-box h4 {
+            font-size: 18px;
+            font-weight: 700;
+            margin-bottom: 10px;
+            color: #38BDF8;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .feature-box p {
+            font-size: 14px;
+            color: #94A3B8;
+            line-height: 1.6;
+        }
+
+        /* --- CITATIONS & ACADEMIC VALIDITY --- */
+        .academic-section {
+            background: #FFFFFF;
+            border-top: 1px solid #E2E8F0;
+            border-bottom: 1px solid #E2E8F0;
+            padding: 80px 24px;
+        }
+
+        .academic-container {
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .citation-card {
+            background: #F8FAFC;
+            border-left: 4px solid #2563EB;
+            padding: 24px 28px;
+            border-radius: 0 14px 14px 0;
+            margin-bottom: 18px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.02);
+        }
+
+        .citation-title {
+            font-size: 15px;
+            font-weight: 800;
+            color: #1E293B;
+            margin-bottom: 6px;
+        }
+
+        .citation-text {
+            font-size: 13px;
+            color: #475569;
+            font-style: italic;
+            line-height: 1.6;
+        }
+
+        /* --- DOWNLOAD & INSTALLATION GUIDE --- */
+        .download-section {
+            background: var(--bg-light);
+            padding: 100px 24px;
+            text-align: center;
+        }
+
+        .download-card-wrapper {
+            max-width: 840px;
+            margin: 0 auto;
+            background: #FFFFFF;
+            border-radius: 28px;
+            padding: 60px 48px;
+            border: 1px solid var(--card-border);
+            box-shadow: var(--shadow-md);
+        }
+
+        .download-actions {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin: 36px 0 24px;
+            flex-wrap: wrap;
+        }
+
+        .download-btn-main {
+            background: linear-gradient(135deg, #0F172A, #1E293B);
+            color: white;
+            text-decoration: none;
+            padding: 18px 40px;
+            border-radius: 14px;
+            font-size: 17px;
+            font-weight: 800;
+            display: inline-flex;
+            align-items: center;
+            gap: 14px;
+            box-shadow: 0 10px 25px rgba(15, 23, 42, 0.3);
+            transition: all 0.25s;
+        }
+
+        .download-btn-main:hover {
+            transform: translateY(-3px);
+            background: #000000;
+            box-shadow: 0 15px 35px rgba(15, 23, 42, 0.45);
+        }
+
+        .mac-instructions {
+            text-align: left;
+            background: #F1F5F9;
+            border-radius: 14px;
+            padding: 24px;
+            margin-top: 36px;
+            border: 1px solid #E2E8F0;
+        }
+
+        .mac-instructions h5 {
+            font-size: 14px;
+            font-weight: 800;
+            color: #0F172A;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .mac-instructions ol {
+            padding-left: 20px;
+            font-size: 13px;
+            color: #475569;
+            line-height: 1.7;
+        }
+
+        /* --- FOOTER --- */
+        footer {
+            background: #0F172A;
+            color: #94A3B8;
+            padding: 60px 24px 30px;
+            border-top: 1px solid #1E293B;
+        }
+
+        .footer-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 24px;
+            padding-bottom: 40px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+        }
+
+        .footer-copy {
+            text-align: center;
+            font-size: 13px;
+            padding-top: 30px;
+            color: #64748B;
+        }
+
+        @media (max-width: 768px) {
+            .hero h2 { font-size: 34px; }
+            .hero p { font-size: 16px; }
+            .nav-links { display: none; }
+            .download-card-wrapper { padding: 40px 20px; }
+            .features-banner { padding: 36px 20px; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- HEADER -->
+    <header>
+        <div class="nav-container">
+            <a href="#" class="logo-group">
+                <div class="logo-icon">⚡</div>
+                <div class="logo-text">
+                    <h1>CogniSport Pro</h1>
+                    <span>Selçuk Üniversitesi • Dr. Ali KELEŞ</span>
+                </div>
+            </a>
+            <ul class="nav-links">
+                <li><a href="#testler">Test Bataryası</a></li>
+                <li><a href="#ozellikler">Özellikler</a></li>
+                <li><a href="#bilimsel">Akademik Temel</a></li>
+                <li><a href="#indir" class="btn-nav-download">Programı İndir</a></li>
+            </ul>
+        </div>
+    </header>
+
+    <!-- HERO SECTION -->
+    <section class="hero">
+        <div class="hero-container">
+            <div class="badge-academic">
+                🏛️ Selçuk Üniversitesi Spor Bilimleri Araştırma & Geliştirme Projesi
+            </div>
+            <h2>Spor Bilimlerinde Klinik Bilişsel & Algısal Performans Laboratuvarı</h2>
+            <p>
+                Elit sporcuların reaksiyon hızını, periferik çevre kontrolünü, görsel-mekânsal işleyen belleğini 
+                ve dürtü kontrolünü milisaniye (ms) hassasiyetinde ölçen ve raporlayan bağımsız masaüstü yazılımı.
+            </p>
+            <div class="hero-actions">
+                <a href="#indir" class="btn-primary-hero">
+                    <span> macOS İçin İndir (.app)</span>
+                </a>
+                <a href="#testler" class="btn-secondary-hero">
+                    <span>🔬 Test Bataryasını İncele</span>
+                </a>
+            </div>
+            <div class="hero-specs">
+                <div class="spec-item">
+                    <span class="spec-num">6+</span>
+                    <span class="spec-label">Bilimsel Test Modülü</span>
+                </div>
+                <div class="spec-item">
+                    <span class="spec-num">0 ms</span>
+                    <span class="spec-label">Giriş & Ağ Gecikmesi</span>
+                </div>
+                <div class="spec-item">
+                    <span class="spec-num">%100</span>
+                    <span class="spec-label">Yerel Güvenli Veritabanı</span>
+                </div>
+                <div class="spec-item">
+                    <span class="spec-num">A4 PDF</span>
+                    <span class="spec-label">Klinik Raporlama İhracı</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- TEST BATTERY SECTION -->
+    <section class="section" id="testler">
+        <div class="section-header">
+            <span class="section-badge">Standardize Edilmiş Metodoloji</span>
+            <h3 class="section-title">Klinik & Spor Bilimleri Test Bataryası</h3>
+            <p class="section-desc">
+                Dünya çapında Q1/Q2 spor bilimleri dergilerinde kullanılan ve nöropsikolojik laboratuvarlarda 
+                altın standart kabul edilen algı ve karar verme testleri.
+            </p>
+        </div>
+
+        <div class="tests-grid">
+            
+            <!-- STROOP -->
+            <div class="test-card">
+                <div>
+                    <div class="card-top">
+                        <div class="test-icon-box" style="background: #FEE2E2; color: #DC2626;">🎯</div>
+                        <span class="test-tag" style="background: #FEE2E2; color: #DC2626;">İnhibisyon</span>
+                    </div>
+                    <h3>Stroop Testi</h3>
+                    <p>
+                        Renk-kelime çeldiricileriyle sporcunun otomatik okuma dürtüsünü bastırma (bilişsel inhibisyon) 
+                        ve saf renk kararı verme hızını milisaniye cinsinden ölçer.
+                    </p>
+                </div>
+                <div class="test-metrics">
+                    <span class="metric-title">Ölçülen Beceriler</span>
+                    <span class="metric-val">Dürtü Kontrolü • Bilişsel Hız</span>
+                </div>
+            </div>
+
+            <!-- CORSI -->
+            <div class="test-card">
+                <div>
+                    <div class="card-top">
+                        <div class="test-icon-box" style="background: #F3E8FF; color: #9333EA;">🧠</div>
+                        <span class="test-tag" style="background: #F3E8FF; color: #9333EA;">Mekânsal Hafıza</span>
+                    </div>
+                    <h3>Corsi Blok Tıklama Testi</h3>
+                    <p>
+                        9 asimetrik blok üzerinden yanan ışık sekanslarını hafızada tutma yeteneğini değerlendirir. 
+                        Saha içi oyuncu pozisyonlarını zihinde tutma kapasitesinin laboratuvar karşılığıdır.
+                    </p>
+                </div>
+                <div class="test-metrics">
+                    <span class="metric-title">Ölçülen Beceriler</span>
+                    <span class="metric-val">Görsel-Mekânsal İşleyen Bellek</span>
+                </div>
+            </div>
+
+            <!-- FLANKER -->
+            <div class="test-card">
+                <div>
+                    <div class="card-top">
+                        <div class="test-icon-box" style="background: #FFEDD5; color: #EA580C;">🏹</div>
+                        <span class="test-tag" style="background: #FFEDD5; color: #EA580C;">Seçici Odak</span>
+                    </div>
+                    <h3>Eriksen Flanker Görevi</h3>
+                    <p>
+                        Yanlardaki çeldirici oklara aldanmadan sadece merkezdeki hedefe odaklanma süresini ölçer. 
+                        Rakip oyuncuların yanıltıcı hamlelerine karşı elit odaklanmayı test eder.
+                    </p>
+                </div>
+                <div class="test-metrics">
+                    <span class="metric-title">Ölçülen Beceriler</span>
+                    <span class="metric-val">Seçici Dikkat • Parazit Bastırma</span>
+                </div>
+            </div>
+
+            <!-- MOT -->
+            <div class="test-card">
+                <div>
+                    <div class="card-top">
+                        <div class="test-icon-box" style="background: #E0F2FE; color: #0284C7;">⚽</div>
+                        <span class="test-tag" style="background: #E0F2FE; color: #0284C7;">Çoklu Takip</span>
+                    </div>
+                    <h3>Dinamik 3D-MOT (Nesne Takibi)</h3>
+                    <p>
+                        Ekranda 2D fizik motoruyla hızla seken 8 toptan hedeflenen 3 tanesini gözle takip etme testi. 
+                        Toplu sporlarda kaos ortamındaki çevre kontrolünü ve vizyonu ölçer.
+                    </p>
+                </div>
+                <div class="test-metrics">
+                    <span class="metric-title">Ölçülen Beceriler</span>
+                    <span class="metric-val">Geniş Çevre Takibi • Dinamik Dikkat</span>
+                </div>
+            </div>
+
+            <!-- GÖREV DEĞİŞİMİ -->
+            <div class="test-card">
+                <div>
+                    <div class="card-top">
+                        <div class="test-icon-box" style="background: #FEF3C7; color: #D97706;">🔀</div>
+                        <span class="test-tag" style="background: #FEF3C7; color: #D97706;">Esneklik</span>
+                    </div>
+                    <h3>Görev Değişimi (Task-Switching)</h3>
+                    <p>
+                        Ekran rengine göre saniyeler içinde kural değiştirerek (Tek/Çift veya Büyük/Küçük) 
+                        karar vermeyi ölçer. Taktiksel geçiş oyunlarındaki zihinsel uyum maliyetini gösterir.
+                    </p>
+                </div>
+                <div class="test-metrics">
+                    <span class="metric-title">Ölçülen Beceriler</span>
+                    <span class="metric-val">Bilişsel Esneklik • Geçiş Hızı</span>
+                </div>
+            </div>
+
+            <!-- WUSHU GÖRSEL GEÇİŞ -->
+            <div class="test-card">
+                <div>
+                    <div class="card-top">
+                        <div class="test-icon-box" style="background: #CCFBF1; color: #0D9488;">🥋</div>
+                        <span class="test-tag" style="background: #CCFBF1; color: #0D9488;">Branşa Özgü</span>
+                    </div>
+                    <h3>Wushu Görsel Reaksiyon Testi</h3>
+                    <p>
+                        Wushu Sanda ve Taolu dövüş teknikleri fotoğrafları eşliğinde, saldırı/savunma kurallarına 
+                        göre milisaniye içinde reaksiyon verme ve doğru motor yanıtı üretme testi.
+                    </p>
+                </div>
+                <div class="test-metrics">
+                    <span class="metric-title">Ölçülen Beceriler</span>
+                    <span class="metric-val">Dövüş Sanatları Karar Verme</span>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- FEATURES BANNER -->
+        <div class="features-banner" id="ozellikler">
+            <h3 style="font-size: 28px; font-weight: 800; letter-spacing: -0.5px;">Neden Masaüstü (Lokal) Mimari?</h3>
+            <p style="color: #94A3B8; max-width: 750px; margin-top: 8px;">
+                Spor bilimleri araştırmalarında reaksiyon süreleri 150-300 ms arasındadır. Web üzerinden yapılan testlerdeki 
+                internet gecikmesi (30-80 ms ping) tüm veriyi bozar. CogniSport Pro sıfır gecikme sunar.
+            </p>
+
+            <div class="features-grid">
+                <div class="feature-box">
+                    <h4>⚡ Donanımsal Hassasiyet</h4>
+                    <p>Monitör tazeleme hızı ve yerel işlemci zamanlayıcısı (QElapsedTimer) kullanılarak ölçümler 0 ms gecikmeyle kaydedilir.</p>
+                </div>
+                <div class="feature-box">
+                    <h4>🔒 Güvenli Veri Tabanı</h4>
+                    <p>Sporcuların kişisel bilgileri, antropometrik verileri ve test kayıtları şifrelenmiş yerel SQLite veritabanında saklanır.</p>
+                </div>
+                <div class="feature-box">
+                    <h4>📄 Tek Tıkla A4 PDF Rapor</h4>
+                    <p>Matplotlib tabanlı gelişim eğrileri ve oturum analizleri vektörel olarak kurumsal A4 PDF çıktısına dönüştürülür.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ACADEMIC VALIDITY -->
+    <section class="academic-section" id="bilimsel">
+        <div class="academic-container">
+            <div class="section-header" style="text-align: left; margin-bottom: 40px;">
+                <span class="section-badge">Bilimsel Literatür</span>
+                <h3 class="section-title">Akademik Temel & APA Referansları</h3>
+                <p class="section-desc" style="margin: 0;">
+                    CogniSport Pro bünyesinde yer alan tüm bilişsel test protokolleri, uluslararası hakemli dergilerde 
+                    yayınlanmış geçerli psikometrik ve nörolojik çalışmalara dayanmaktadır.
+                </p>
+            </div>
+
+            <div class="citation-card">
+                <div class="citation-title">Geliştirici & Bilimsel Danışmanlık</div>
+                <div class="citation-text">
+                    Selçuk Üniversitesi Spor Bilimleri Fakültesi • <b>Dr. Ali KELEŞ</b>
+                </div>
+            </div>
+
+            <div class="citation-card">
+                <div class="citation-title">Stroop Testi (Bilişsel İnhibisyon)</div>
+                <div class="citation-text">
+                    Stroop, J. R. (1935). Studies of interference in serial verbal reactions. <i>Journal of Experimental Psychology</i>, 18(6), 643–662.
+                </div>
+            </div>
+
+            <div class="citation-card">
+                <div class="citation-title">Corsi Blok Tıklama Testi (Mekânsal İşleyen Bellek)</div>
+                <div class="citation-text">
+                    Corsi, P. M. (1972). Human memory and the medial temporal region of the brain. <i>Dissertation Abstracts International</i>, 34(02), 891B.
+                </div>
+            </div>
+
+            <div class="citation-card">
+                <div class="citation-title">Eriksen Flanker Görevi (Seçici Dikkat)</div>
+                <div class="citation-text">
+                    Eriksen, B. A., & Eriksen, C. W. (1974). Effects of noise letters upon the identification of a target letter in a nonsearch task. <i>Perception & Psychophysics</i>, 16(1), 143–149.
+                </div>
+            </div>
+
+            <div class="citation-card">
+                <div class="citation-title">Dinamik MOT (Çoklu Nesne Takibi - NeuroTracker Modeli)</div>
+                <div class="citation-text">
+                    Faubert, J. (2013). Professional sports-brain training enhances neuro-plasticity in the real world. <i>Scientific Reports</i>, 3, Article 1929.
+                </div>
+            </div>
+
+            <div class="citation-card">
+                <div class="citation-title">Görev Değişimi (Task-Switching Paradigması)</div>
+                <div class="citation-text">
+                    Kiesel, A., Steinhauser, M., Wendt, M., Falkenstein, M., Jost, K., Philipp, A. M., & Koch, I. (2010). Control and interference in task switching—A review. <i>Psychological Bulletin</i>, 136(5), 849–874.
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- DOWNLOAD SECTION -->
+    <section class="download-section" id="indir">
+        <div class="download-card-wrapper">
+            <span class="section-badge">Hemen Kullanmaya Başlayın</span>
+            <h3 style="font-size: 34px; font-weight: 800; color: #0F172A; margin-bottom: 12px; letter-spacing: -0.5px;">
+                CogniSport Pro'yu İndirin
+            </h3>
+            <p style="color: #64748B; font-size: 16px; max-width: 600px; margin: 0 auto;">
+                Python, Terminal veya ek kütüphane kurulumu gerektirmez. 
+                İndirin, çift tıklayın ve sporcularınızla doğrudan teste başlayın.
+            </p>
+
+            <div class="download-actions">
+                <a href="downloads/CogniSport_macOS.zip" class="download-btn-main" id="mac-download-btn">
+                    <span style="font-size: 22px;"></span>
+                    <div style="text-align: left;">
+                        <span style="display: block; font-size: 11px; text-transform: uppercase; letter-spacing: 0.5px; opacity: 0.8;">macOS Sürümü</span>
+                        <span>CogniSport.app İndir (.zip)</span>
+                    </div>
+                </a>
+            </div>
+
+            <!-- MAC GATEKEEPER INSTRUCTION -->
+            <div class="mac-instructions">
+                <h5>💡 macOS İlk Açılış Bilgilendirmesi</h5>
+                <ol>
+                    <li>İndirdiğiniz <b>CogniSport_macOS.zip</b> arşivine çift tıklayarak çıkarın.</li>
+                    <li>Oluşan <b>CogniSport.app</b> uygulamasına doğrudan çift tıklamak yerine: <b>Sağ tıklayın</b> (veya klavyedeki Control tuşuna basılı tutarak tıklayın) ve <b>"Aç" (Open)</b> seçeneğini seçin.</li>
+                    <li>Gelen ekranda <b>"Aç"</b> butonuna onay verin. Bu işlem yalnızca <u>ilk açılışta bir defaya mahsus</u> yapılır.</li>
+                </ol>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer>
+        <div class="footer-container">
+            <div>
+                <h4 style="color: white; font-size: 18px; font-weight: 800; margin-bottom: 6px;">CogniSport Pro</h4>
+                <p style="font-size: 13px;">Spor Bilimleri Algı & Karar Verme Analiz Sistemi</p>
+                <p style="font-size: 13px; color: #38BDF8; margin-top: 4px;">Selçuk Üniversitesi Spor Bilimleri Fakültesi</p>
+            </div>
+            <div style="text-align: right;">
+                <p style="font-size: 13px; font-weight: 700; color: white;">Bilimsel Danışman & Tasarım</p>
+                <p style="font-size: 14px; color: #94A3B8;">Dr. Ali KELEŞ</p>
+            </div>
+        </div>
+        <div class="footer-copy">
+            &copy; 2026 CogniSport Pro. Tüm hakları saklıdır. Selçuk Üniversitesi araştırma ve bilimsel kullanım projesidir.
+        </div>
+    </footer>
+
+</body>
+</html>
